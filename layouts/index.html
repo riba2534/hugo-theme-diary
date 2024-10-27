@@ -1,8 +1,7 @@
-
 {{ define "main" }}
 
     <div class="post-list-container post-list-container-no-background">
-        {{ $paginator := .Paginate (where .Site.RegularPages "Params.hidden" "!=" true) }}
+        {{ $paginator := .Paginate (where .Site.RegularPages "Section" "blog") }}
         {{range $paginator.Pages }}
             <a href="{{.RelPermalink}}" class="a-block">
                 <div class="post-item-wrapper">
@@ -12,11 +11,7 @@
                                 {{.Title}}
                             </div>
                             <div class="post-item-summary">
-                                {{ if .Description }}
-                                    {{ .Description }}
-                                {{ else }}
-                                    {{ .Summary }}
-                                {{ end }}
+                                {{ .Description }}
                             </div>
                             {{ partial "post-item-meta.html" . }}
                         </div>
